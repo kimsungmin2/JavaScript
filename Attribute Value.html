@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 게임</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        img {
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+
+    <script>
+        const choices = ['地', '水', '火', '風'];
+
+        function computerChoice() {
+            const randomIndex = Math.floor(Math.random() * 4);
+            return choices[randomIndex];
+        }
+
+        function winandloss(user, computer) {
+            if (user === computer) return '무승부 입니다';
+            if ((user === '地' && computer === '水') ||
+                (user === '水' && computer === '火') ||
+                (user === '火' && computer === '風') ||
+                (user === '風' && computer === '地')) {
+                return '승리했습니다';
+            } else {
+                return '패배했습니다';
+            }
+        }
+        function userChoice(choice) {
+            const user = choice;
+            const computer = computerChoice();
+
+            document.getElementById('userChoice').innerText = user;
+            document.getElementById('computerChoice').innerText = computer;
+
+            const result = winandloss(user , computer);
+            document.getElementById('result').innerText = result;
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>속성 게임</h1>
+
+    <p>유저 선택: <span id="userChoice">?</span></p>
+    <p>컴퓨터 선택: <span id="computerChoice">?</span></p>
+
+    <img src="earth.png" alt="지" onclick="userChoice('地')">
+    <img src="water.png" alt="수" onclick="userChoice('水')">
+    <img src="fire.png" alt="화" onclick="userChoice('火')">
+    <img src="wind.png" alt="풍" onclick="userChoice('風')">
+
+    <p id="result"></p>
+
+    <p>地 > 水 > 火 > 風 > 地</p>
+
+</body>
+
+</html>
